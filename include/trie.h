@@ -110,6 +110,7 @@ public:
       }
     }
 
+    size_++;
     curr->end_of_word = true;
   }
 
@@ -168,13 +169,14 @@ public:
       }
     } while (next != nullptr && next->parent);
 
+    size_--;
     return true;
   }
 
   std::size_t size() const
   {
     // TODO Check whether storing a cached size is better than calculating it or not.
-    return 0;
+    return size_;
   }
 
   bool empty() const

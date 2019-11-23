@@ -7,6 +7,8 @@ int main()
   Trie dict{"victor", "anita", "dan", "danela"};
 
   using std::cout, std::endl;
+  cout << dict.size() << endl;
+
   cout << std::boolalpha;
 
   cout << dict.remove("victor") << endl;  // true
@@ -15,6 +17,8 @@ int main()
   cout << dict.remove("danela") << endl;  // true
   cout << dict.has_word("dan") << endl;  // true
   cout << dict.has_word("anita") << endl;  // true
+
+  cout << dict.size() << endl;
 
   cout << endl;
 }
