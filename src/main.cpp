@@ -1,8 +1,8 @@
-#include "trie.h"
 #include "levenshtein.h"
+#include "trie.h"
 
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 
 int main(int argc, char **argv)
 {
@@ -35,9 +35,7 @@ int main(int argc, char **argv)
   Levenshtein dist(dict1);
   std::string input{argv[1]};
   std::vector<std::pair<std::string, std::size_t>> result = dist.search(input, 4);
-  std::sort(result.begin(), result.end(), [](auto &&a, auto &&b) {
-    return a.second < b.second;
-  });
+  std::sort(result.begin(), result.end(), [](auto &&a, auto &&b) { return a.second < b.second; });
 
   for (const auto &[word, cost] : result)
   {

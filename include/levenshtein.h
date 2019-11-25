@@ -11,7 +11,7 @@ namespace spellchecker
  */
 static std::size_t levenshtein(std::string left, std::string right) noexcept;
 
-}
+}  // namespace spellchecker
 
 class Levenshtein
 {
@@ -24,8 +24,6 @@ public:
   {
     this->words = words;
   }
-
-  
 
   std::vector<std::pair<std::string, std::size_t>> search(std::string target, std::size_t max_cost)
   {
