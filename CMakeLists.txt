@@ -14,3 +14,16 @@ target_include_directories(spellchecker PUBLIC include)
 add_executable(dummy_demo src/dummy_demo.cpp)
 target_link_libraries(dummy_demo spellchecker)
 target_include_directories(dummy_demo PUBLIC include)
+
+# Link Google Test and discover unit tests
+
+enable_testing()
+find_package(GTest REQUIRED)
+include(GoogleTest)
+
+add_executable(tests tests/trie_test.cpp tests/levenshtein_test.cpp)
+target_link_libraries(tests 
+  GTest::GTest 
+  GTest::Main 
+  spellchecker)
+gtest_discover_tests(tests)
