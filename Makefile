@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-std=c++17 -Iinclude
+CXXFLAGS=-std=c++17 -Iinclude -g
 BIN=bin
 
 bin/main: src/main.cpp include/trie.h
