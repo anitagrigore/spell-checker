@@ -3,7 +3,7 @@
 namespace spellchecker
 {
 
-static std::size_t levenshtein(std::string left, std::string right) noexce
+std::size_t levenshtein(std::string left, std::string right) noexcept
 {
   std::size_t columns = left.length() + 1;
   std::size_t rows = right.length() + 1;

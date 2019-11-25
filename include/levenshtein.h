@@ -9,7 +9,7 @@ namespace spellchecker
 /**
  * \brief Calculates the Levenshtein distance between \p left and \p right.
  */
-static std::size_t levenshtein(std::string left, std::string right) noexcept;
+std::size_t levenshtein(std::string left, std::string right) noexcept;
 
 }  // namespace spellchecker
 
@@ -30,7 +30,7 @@ public:
     std::vector<std::pair<std::string, std::size_t>> results;
     for (auto word : words)
     {
-      cost = levenshtein(target, word);
+      cost = spellchecker::levenshtein(target, word);
 
       if (cost <= max_cost)
       {
