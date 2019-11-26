@@ -27,10 +27,11 @@ int main(int argc, char **argv)
   std::vector<std::string> dict1;
   dict1.push_back("caiet");
   dict1.push_back("caiete");
-  dict1.push_back("caietele");
-  dict1.push_back("maimuta");
   dict1.push_back("carnat");
-  dict1.push_back("catei");
+  dict1.push_back("caietele");
+  dict1.push_back("carnati");
+  dict1.push_back("copii");
+  dict1.push_back("copil");
 
   Levenshtein dist(dict1);
   std::string input{argv[1]};

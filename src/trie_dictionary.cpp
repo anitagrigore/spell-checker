@@ -12,7 +12,14 @@ void TrieDictionary::read_from_stream(std::istream &input)
   dictionary_loader::read_from_stream(input, trie_);
 }
 
-std::vector<TrieDictionary::WordCost> TrieDictionary::get_corrections(std::string seq, std::size_t max_cost) noexcept
+/**
+ * \brief Searches for the words with a distance smaller than \p max_cost.
+ * \param seq The word that has to be corrected with possible words existing in the dictionary
+ * \param max_cost The maximum value of the Levenshtein distance accepted for spell checking.
+ * \return Returns a vector of (word, cost) pairs.
+ **/ 
+std::vector<TrieDictionary::WordCost> TrieDictionary::get_corrections(
+  std::string seq, std::size_t max_cost) noexcept
 {
   std::size_t columns = seq.length();
   std::vector<std::size_t> curr_row(columns);
@@ -47,7 +54,7 @@ void TrieDictionary::search_recursive(Trie::Node* node,
     std::size_t max_cost)
 {
   std::size_t columns = word.length() + 1;
-  std::vector<std::size_t> curr_row(columns);
+  std::vector<std::size_t> curr_row;
   curr_row.push_back(prev_row[0] + 1);
   
   for (std::size_t col = 1; col < columns; col++)

@@ -84,6 +84,10 @@ public:
       }
     }
     
+    /**
+     * \brief Recreates the word from characters saved in Trie.
+     * \return Returns the word from the Trie.
+     **/
     std::string word() const
     {
       std::stack<char> s;
@@ -113,11 +117,18 @@ public:
     bool end_of_word;
   };
 
-  // Create an empty Trie.
+  /**
+   * \brief Create an empty Trie.
+   * \return Returns an empty Trie.
+   **/ 
   Trie() : root_{std::make_unique<Node>()}, size_{0}
   {}
 
-  // Create a Trie from a list of words.
+  /**
+   * \brief Create a Trie from a list of words.
+   * \param words A list of words to be added to the Trie.
+   * return Returns a new Trie with the \p words in it.
+   **/ 
   Trie(const std::initializer_list<std::string> &words) : Trie()
   {
     for (const auto &str : words)
@@ -125,8 +136,10 @@ public:
       insert(str);
     }
   }
-
-  // Insert a new word into the trie.
+  
+  /**
+   * \brief Insert a new word into the trie.
+   **/ 
   void insert(std::string word) noexcept
   {
     Node *curr = root_.get();
@@ -148,7 +161,10 @@ public:
     curr->end_of_word = true;
   }
 
-  // Check whether the given word exists in the Trie.
+/**
+ * \brief Check whether the given word exists in the Trie.
+ * \return Returns true if it exists, false otherwise
+ **/ 
   bool has_word(std::string word) const noexcept
   {
     Node *curr = root_.get();
@@ -167,8 +183,10 @@ public:
     return curr->end_of_word;
   }
 
-  // Remove the given word from the Trie. Returns true if the word existed and
-  // was deleted and false otherwise.
+  /**
+   * \brief Remove the given word from the Trie.
+   * \return Returns true if the word existed and was deleted and false otherwise.
+   **/
   bool remove(std::string word) noexcept
   {
     if (word.empty())
@@ -209,7 +227,6 @@ public:
 
   std::size_t size() const
   {
-    // TODO Check whether storing a cached size is better than calculating it or not.
     return size_;
   }
 
