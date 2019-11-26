@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "dictionary_loader.h"
+#include "trie.h"
 
 #include <sstream>
 
@@ -10,7 +11,8 @@ TEST(DictionaryLoader, ReadFromStream)
 {
   std::istringstream in{"foo\nbar\nbaz\n"};
   
-  auto dict = read_from_stream(in);
+  Trie dict;
+  read_from_stream(in, dict);
   
   EXPECT_EQ(dict.size(), 3);
   EXPECT_TRUE(dict.has_word("foo"));

@@ -7,20 +7,17 @@
 namespace spellchecker::dictionary_loader
 {
     
-Trie read_from_stream(std::istream &input)
+void read_from_stream(std::istream &input, Trie &dict)
 {
-  Trie trie;
   std::string line;
 
   while (std::getline(input, line))
   {
     if (!line.empty())
     {
-      trie.insert(line);
+      dict.insert(line);
     }
   }
-  
-  return trie;
 }
-    
+
 }

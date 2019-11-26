@@ -13,8 +13,8 @@ namespace spellchecker::dictionary_loader
  * line in the stream (i.e. separated by LF).
  * \param input The stream to read from. Note that the stream will be read until
  * EOF or another error condition occurs.
- * \returns The populated Trie.
+ * \param dict The trie to be populated with the words read.
  */
-Trie read_from_stream(std::istream &input);
+void read_from_stream(std::istream &input, Trie &dict);
 
 }
