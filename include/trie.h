@@ -8,13 +8,31 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
+#include <stack>
+
+namespace spellchecker
+{
+  
+class TrieDictionary;
+  
+}
 
 class Trie
 {
+  friend class spellchecker::TrieDictionary;
+
   static const int kLettersCount = 26;
 
+  static std::size_t charToIndex(char c) noexcept
+  {
+    return c - 'a';
+  }
+
+public:
   struct Node
   {
+    friend class TrieDictionary;
+
   public:
     explicit Node(char chr = '\0', bool end_of_word = false, Node *parent = nullptr) :
         children{},
@@ -65,6 +83,28 @@ class Trie
         children[charToIndex(c)] = nullptr;
       }
     }
+    
+    std::string word() const
+    {
+      std::stack<char> s;
+      
+      auto curr = this;
+      while (curr->parent)
+      {
+        s.push(curr->chr);
+        curr = curr->parent;
+      }
+      
+      std::string w;
+
+      while (!s.empty())
+      {
+        w.push_back(s.top());
+        s.pop();
+      }
+      
+      return w;
+    }
 
     Node *children[kLettersCount];
     Node *parent;
@@ -73,12 +113,6 @@ class Trie
     bool end_of_word;
   };
 
-  static std::size_t charToIndex(char c) noexcept
-  {
-    return c - 'a';
-  }
-
-public:
   // Create an empty Trie.
   Trie() : root_{std::make_unique<Node>()}, size_{0}
   {}

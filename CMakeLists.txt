@@ -8,14 +8,21 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 add_library(spellchecker 
   include/levenshtein.h
   include/trie.h 
+  include/trie_dictionary.h
   include/dictionary_loader.h
   src/levenshtein.cpp
+  src/trie_dictionary.cpp
   src/dictionary_loader.cpp)
 target_include_directories(spellchecker PUBLIC include)
 
 add_executable(dummy_demo src/dummy_demo.cpp)
 target_link_libraries(dummy_demo spellchecker)
 target_include_directories(dummy_demo PUBLIC include)
+
+add_executable(trie_demo src/trie_demo.cpp)
+target_link_libraries(trie_demo spellchecker)
+target_include_directories(trie_demo PUBLIC include)
+
 
 # Link Google Test and discover unit tests
 
