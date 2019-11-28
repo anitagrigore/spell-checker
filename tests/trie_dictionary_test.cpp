@@ -13,7 +13,7 @@ TEST(TrieDictionary, SmallDictionary)
   TrieDictionary fast_dictionary{"foo", "bar", "baz"};
   LinearDictionary linear_dictionary{"foo", "bar", "baz"};
   
-  ASSERT_EQ(fast_dictionary.get_corrections("fo", 2), linear_dictionary.get_corrections("fo", 2));
+  ASSERT_EQ(fast_dictionary.get_corrections("fo", 1), linear_dictionary.get_corrections("fo", 1));
 }
 
 TEST(TrieDictionary, EnglishDictionary)

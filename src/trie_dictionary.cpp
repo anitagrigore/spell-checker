@@ -53,6 +53,7 @@ void TrieDictionary::search_recursive(Trie::Node* node,
     std::vector<TrieDictionary::WordCost> &results, 
     std::size_t max_cost)
 {
+  if (word.length() == 1) return;
   std::size_t columns = word.length() + 1;
   std::vector<std::size_t> curr_row;
   curr_row.push_back(prev_row[0] + 1);
