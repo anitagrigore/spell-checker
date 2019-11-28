@@ -14,12 +14,10 @@ namespace spellchecker
 {
   
 class TrieDictionary;
-  
-}
 
 class Trie
 {
-  friend class spellchecker::TrieDictionary;
+  friend class TrieDictionary;
 
   static const int kLettersCount = 26;
 
@@ -140,97 +138,26 @@ public:
   /**
    * \brief Insert a new word into the trie.
    **/ 
-  void insert(std::string word) noexcept
-  {
-    Node *curr = root_.get();
-    for (int i = 0; i < word.length(); i++)
-    {
-      if (curr->hasChildAt(word[i]))
-      {
-        curr = curr->childAt(word[i]);
-      }
-      else
-      {
-        Node *new_node = new Node(word[i], false, curr);
-        curr->insertChild(new_node);
-        curr = new_node;
-      }
-    }
+  void insert(std::string word) noexcept;
 
-    size_++;
-    curr->end_of_word = true;
-  }
-
-/**
- * \brief Check whether the given word exists in the Trie.
- * \return Returns true if it exists, false otherwise
- **/ 
-  bool has_word(std::string word) const noexcept
-  {
-    Node *curr = root_.get();
-    for (int i = 0; i < word.length(); i++)
-    {
-      if (curr->hasChildAt(word[i]))
-      {
-        curr = curr->childAt(word[i]);
-      }
-      else
-      {
-        return false;
-      }
-    }
-
-    return curr->end_of_word;
-  }
+ /**
+  * \brief Check whether the given word exists in the Trie.
+  * \return Returns true if it exists, false otherwise
+  **/ 
+  bool has_word(std::string word) const noexcept;
 
   /**
    * \brief Remove the given word from the Trie.
    * \return Returns true if the word existed and was deleted and false otherwise.
    **/
-  bool remove(std::string word) noexcept
-  {
-    if (word.empty())
-    {
-      return false;
-    }
+  bool remove(std::string word) noexcept;
 
-    Node *next = root_.get();
-    while (next && !word.empty())
-    {
-      if (next->hasChildAt(word[0]))
-      {
-        next = next->childAt(word[0]);
-      }
-      word = word.substr(1);
-    }
-
-    if (!next->end_of_word)
-    {
-      return false;
-    }
-
-    do
-    {
-      auto parent = next->parent;
-      parent->deleteChildAt(next->chr);
-      next = parent;
-
-      if (parent->children_count >= 1 || parent->end_of_word)
-      {
-        break;
-      }
-    } while (next != nullptr && next->parent);
-
-    size_--;
-    return true;
-  }
-
-  std::size_t size() const
+  std::size_t size() const noexcept
   {
     return size_;
   }
 
-  bool empty() const
+  bool empty() const noexcept
   {
     return size() == 0;
   }
@@ -239,3 +166,5 @@ private:
   std::unique_ptr<Node> root_;
   std::size_t size_;
 };
+
+}

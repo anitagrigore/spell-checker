@@ -1,12 +1,13 @@
 #include "levenshtein.h"
 #include "trie.h"
+#include "linear_dictionary.h"
 
 #include <algorithm>
 #include <iostream>
 
 int main(int argc, char **argv)
 {
-  Trie dict{"victor", "anita", "dan", "danela"};
+  spellchecker::Trie dict{"victor", "anita", "dan", "danela"};
 
   using std::cout, std::endl;
   cout << dict.size() << endl;
@@ -33,9 +34,9 @@ int main(int argc, char **argv)
   dict1.push_back("copii");
   dict1.push_back("copil");
 
-  Levenshtein dist(dict1);
+  spellchecker::LinearDictionary dist(dict1);
   std::string input{argv[1]};
-  std::vector<std::pair<std::string, std::size_t>> result = dist.search(input, 4);
+  std::vector<std::pair<std::string, std::size_t>> result = dist.get_corrections(input, 1);
   std::sort(result.begin(), result.end(), [](auto &&a, auto &&b) { return a.second < b.second; });
 
   for (const auto &[word, cost] : result)

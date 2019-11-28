@@ -5,6 +5,7 @@
 #include <string>
 #include <fstream>
 #include <algorithm>
+#include <fstream>
 
 int main(int argc, char **argv)
 {
@@ -19,7 +20,7 @@ int main(int argc, char **argv)
   spellchecker::TrieDictionary dict;
   dict.read_from_stream(dictionary_source);
   
-  auto corrections = dict.get_corrections(word);
+  auto corrections = dict.get_corrections(word, 1);
   std::sort(corrections.begin(), corrections.end(), [](auto &&a, auto &&b) {
     return a.second < b.second;
   });

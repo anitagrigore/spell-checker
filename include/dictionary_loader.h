@@ -17,4 +17,6 @@ namespace spellchecker::dictionary_loader
  */
 void read_from_stream(std::istream &input, Trie &dict);
 
+void read_from_stream(std::istream &input, std::vector<std::string> &dict);
+
 }

@@ -16,7 +16,12 @@ class TrieDictionary
 public:
   using WordCost = std::pair<std::string, std::size_t>;
   
-  static constexpr std::size_t DEFAULT_CORRECTIONS_MAX_COST = 4;
+  static constexpr std::size_t DEFAULT_CORRECTIONS_MAX_COST = 1;
+  
+  TrieDictionary() = default;
+  
+  TrieDictionary(std::initializer_list<std::string> values) : trie_{values}
+  {}
   
   /**
    * \brief Populate the dictionary from an input stream.

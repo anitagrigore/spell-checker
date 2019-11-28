@@ -20,4 +20,17 @@ void read_from_stream(std::istream &input, Trie &dict)
   }
 }
 
+void read_from_stream(std::istream &input, std::vector<std::string> &dict)
+{
+  std::string line;
+  
+  while (std::getline(input, line))
+  {
+    if (!line.empty())
+    {
+      dict.push_back(line);
+    }
+  }
+}
+
 }

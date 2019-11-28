@@ -1,6 +1,9 @@
 #include "gtest/gtest.h"
 #include "trie.h"
 
+namespace spellchecker
+{
+  
 TEST(Trie, Construct)
 {
   Trie empty_trie;
@@ -48,4 +51,6 @@ TEST(Trie, Remove)
   EXPECT_FALSE(trie.has_word("bar"));
   
   EXPECT_FALSE(trie.remove("baz"));
+}
+
 }
