@@ -44,3 +44,34 @@ The folder `benchmarks` has files calculating the average time it takes to perfo
 actions (like inserting/searching/removing a word into/from a trie or getting the possible
 corrections for a word using `linear_dictionary` and `trie_dictionary`). I limited the
 the dictionary to 130 words (from a total of 380000).
+
+To compile and run the tests, there has to be a `bin` folder.
+
+```
+mkdir bin
+cd bin
+cmake ..
+make
+cd ..
+./bin/tests
+#and the others
+
+```
+
+Software versions used for the development environment:
+
+- `gcc` 9.2.1
+- `cmake` 3.15.5
+- `make`  4.1
+ - `googletest` 1.8.0
+ 
+ ## Installing Google Test
+
+```
+sudo apt install googletest
+cd /usr/src/googletest
+sudo mkdir bin && cd bin
+sudo cmake ..
+sudo make 
+sudo make install
+```
