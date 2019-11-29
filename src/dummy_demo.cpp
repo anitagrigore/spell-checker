@@ -1,6 +1,6 @@
 #include "levenshtein.h"
-#include "trie.h"
 #include "linear_dictionary.h"
+#include "trie.h"
 
 #include <algorithm>
 #include <iostream>

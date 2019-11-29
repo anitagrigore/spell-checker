@@ -1,9 +1,9 @@
 #pragma once
 
+#include "trie.h"
+
 #include <iostream>
 #include <istream>
-
-#include "trie.h"
 
 namespace spellchecker::dictionary_loader
 {
@@ -23,7 +23,7 @@ void read_from_stream(std::istream &input, Trie &dict);
  * \param input The stream to read from. Note that the stream will be read until
  * EOF or another error condition occurs.
  * \param dict The vector to be populated with the words read.
- **/ 
+ **/
 void read_from_stream(std::istream &input, std::vector<std::string> &dict);
 
-}
+}  // namespace spellchecker::dictionary_loader

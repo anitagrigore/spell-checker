@@ -2,7 +2,7 @@
 
 namespace spellchecker
 {
-  
+
 void Trie::insert(std::string word) noexcept
 {
   Node *curr = root_.get();
@@ -43,40 +43,40 @@ bool Trie::has_word(std::string word) const noexcept
 }
 
 bool Trie::remove(std::string word) noexcept
+{
+  if (word.empty())
   {
-    if (word.empty())
-    {
-      return false;
-    }
-
-    Node *next = root_.get();
-    while (next && !word.empty())
-    {
-      if (next->hasChildAt(word[0]))
-      {
-        next = next->childAt(word[0]);
-      }
-      word = word.substr(1);
-    }
-
-    if (!next->end_of_word)
-    {
-      return false;
-    }
-
-    do
-    {
-      auto parent = next->parent;
-      parent->deleteChildAt(next->chr);
-      next = parent;
-
-      if (parent->children_count >= 1 || parent->end_of_word)
-      {
-        break;
-      }
-    } while (next != nullptr && next->parent);
-
-    size_--;
-    return true;
+    return false;
   }
+
+  Node *next = root_.get();
+  while (next && !word.empty())
+  {
+    if (next->hasChildAt(word[0]))
+    {
+      next = next->childAt(word[0]);
+    }
+    word = word.substr(1);
+  }
+
+  if (!next->end_of_word)
+  {
+    return false;
+  }
+
+  do
+  {
+    auto parent = next->parent;
+    parent->deleteChildAt(next->chr);
+    next = parent;
+
+    if (parent->children_count >= 1 || parent->end_of_word)
+    {
+      break;
+    }
+  } while (next != nullptr && next->parent);
+
+  size_--;
+  return true;
 }
+}  // namespace spellchecker

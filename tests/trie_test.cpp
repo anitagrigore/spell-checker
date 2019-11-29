@@ -1,9 +1,10 @@
-#include "gtest/gtest.h"
 #include "trie.h"
+
+#include "gtest/gtest.h"
 
 namespace spellchecker
 {
-  
+
 TEST(Trie, Construct)
 {
   Trie empty_trie;
@@ -33,24 +34,24 @@ TEST(Trie, Insert)
   trie.insert("bar");
 
   EXPECT_TRUE(trie.has_word("foo"));
-  EXPECT_TRUE(trie.has_word("bar"));  
+  EXPECT_TRUE(trie.has_word("bar"));
 }
 
 TEST(Trie, Remove)
 {
   Trie trie{"foo", "bar"};
-  
+
   EXPECT_EQ(trie.size(), 2);
 
   EXPECT_TRUE(trie.remove("foo"));
   EXPECT_EQ(trie.size(), 1);
   EXPECT_FALSE(trie.has_word("foo"));
-  
+
   EXPECT_TRUE(trie.remove("bar"));
   EXPECT_TRUE(trie.empty());
   EXPECT_FALSE(trie.has_word("bar"));
-  
+
   EXPECT_FALSE(trie.remove("baz"));
 }
 
-}
+}  // namespace spellchecker
