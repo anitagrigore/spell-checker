@@ -2,7 +2,7 @@
 
 namespace spellchecker
 {
-
+// This function is the matrix implementation of the Levenshtein distance.
 std::size_t levenshtein(std::string left, std::string right) noexcept
 {
   std::size_t columns = left.length() + 1;

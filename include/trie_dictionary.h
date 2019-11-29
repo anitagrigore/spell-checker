@@ -16,11 +16,14 @@ class TrieDictionary
 public:
   using WordCost = std::pair<std::string, std::size_t>;
   
-  static constexpr std::size_t DEFAULT_CORRECTIONS_MAX_COST = 1;
+  static constexpr std::size_t DEFAULT_CORRECTIONS_MAX_COST = 2;
   
   TrieDictionary() = default;
   
   TrieDictionary(std::initializer_list<std::string> values) : trie_{values}
+  {}
+  
+  TrieDictionary(std::vector<std::string> values) : trie_{values}
   {}
   
   /**
@@ -29,6 +32,17 @@ public:
    */
   void read_from_stream(std::istream &in);
   
+  /**
+   * \brief Gives a set of words from the existent dictionary as a possible 
+   * correction for the \p seq.
+   * 
+   * \param seq The word which has to be corrected.
+   * \param max_cost The maximum distance between the \p target and the words in 
+   * the dictionary.
+   * 
+   * \return Returns a list of words with the correspondent cost that are suited 
+   * corrections for the \p target.
+   **/ 
   std::vector<WordCost> get_corrections(std::string seq, 
       std::size_t max_cost = DEFAULT_CORRECTIONS_MAX_COST) noexcept;
       

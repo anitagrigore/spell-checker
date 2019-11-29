@@ -135,6 +135,14 @@ public:
     }
   }
   
+  Trie(const std::vector<std::string> &words) : Trie()
+  {
+    for (const auto &str : words)
+    {
+      insert(str);
+    }
+  }
+  
   /**
    * \brief Insert a new word into the trie.
    **/ 

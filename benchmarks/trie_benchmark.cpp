@@ -1,5 +1,6 @@
 #include "benchmark.h"
 #include "dictionary_loader.h"
+#include "linear_dictionary.h"
 
 #include <algorithm>
 #include <vector>
@@ -9,6 +10,9 @@
 
 std::vector<std::string> dict;
 
+/**
+ * \brief Mesure the average time it takes to insert a word into a trie.
+ **/ 
 double trie_insert()
 {
   std::random_shuffle(dict.begin(), dict.end());
@@ -24,6 +28,9 @@ double trie_insert()
   return t / dict.size();
 }
 
+/**
+ * \brief Mesure the average time it takes to search for a word in a trie.
+ **/ 
 double trie_search()
 {
   std::random_shuffle(dict.begin(), dict.end());
@@ -43,6 +50,9 @@ double trie_search()
   return t / dict.size();
 }
 
+/**
+ * \brief Mesure the average time it takes to remove a word from a trie.
+ **/ 
 double trie_remove()
 {
   std::random_shuffle(dict.begin(), dict.end());
@@ -81,7 +91,7 @@ int main()
   
   for (const auto &[name, nano] : benchmarks)
   {
-    std::cout << name << "\t" << nano << "ns\n";
+    std::cout << name << "\t" << nano << "ms\n";
   }
   
   return 0;

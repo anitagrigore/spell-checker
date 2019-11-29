@@ -31,9 +31,17 @@ add_executable(trie_demo src/trie_demo.cpp)
 target_link_libraries(trie_demo spellchecker)
 target_include_directories(trie_demo PUBLIC include)
 
-add_executable(benchmark benchmarks/trie_benchmark.cpp)
-target_link_libraries(benchmark spellchecker)
-target_include_directories(benchmark PUBLIC include)
+add_executable(benchmark_trie benchmarks/trie_benchmark.cpp)
+target_link_libraries(benchmark_trie spellchecker)
+target_include_directories(benchmark_trie PUBLIC include)
+
+add_executable(benchmark_linear_dict benchmarks/linear_dict_benchmark.cpp)
+target_link_libraries(benchmark_linear_dict spellchecker)
+target_include_directories(benchmark_linear_dict PUBLIC include)
+
+add_executable(benchmark_trie_dict benchmarks/trie_dict_benchmark.cpp)
+target_link_libraries(benchmark_trie_dict spellchecker)
+target_include_directories(benchmark_trie_dict PUBLIC include)
 
 
 # Link Google Test and discover unit tests
